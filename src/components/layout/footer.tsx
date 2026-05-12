@@ -11,9 +11,6 @@ export function Footer({ name = "Arlet" }: { name?: string }) {
                     <Link href="/politicas" className="hover:text-foreground transition-colors">
                         Reglamento
                     </Link>
-                    <Link href="/aviso-privacidad" className="hover:text-foreground transition-colors">
-                        Aviso de Privacidad
-                    </Link>
                 </div>
             </div>
         </footer>

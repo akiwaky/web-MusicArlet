@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { WhatsAppButton } from "@/components/ui/whatsapp-button"
 import { MUSIC_CONFIG } from "@/config/music"
-import { submitMusicLead } from "@/integrations/n8n/webhooks"
 import {
     Music,
     Star,
@@ -106,104 +105,6 @@ const FAQS = [
 ]
 
 /* ─────────────────────── Component Hooks ─────────────────────── */
-
-function LeadForm() {
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setStatus("loading")
-        const formData = new FormData(e.currentTarget)
-
-        if (formData.get("subject")) {
-            setStatus("success")
-            return
-        }
-
-        const data = {
-            name: formData.get("name") as string | null,
-            whatsapp: formData.get("whatsapp") as string | null,
-            zone: formData.get("zone") as string | null,
-            times: formData.get("times") as string | null,
-            timestamp: new Date().toISOString(),
-            source: typeof window !== 'undefined' ? window.location.href : '/'
-        }
-
-        try {
-            await submitMusicLead(data)
-            setStatus("success")
-            if (typeof window !== 'undefined') window.location.href = "/gracias"
-        } catch (error) {
-            console.error(error)
-            setStatus("error")
-        }
-    }
-
-    if (status === "success") {
-        return (
-            <div className="p-8 text-center bg-green-50 rounded-xl border border-green-200">
-                <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-green-700 mb-2">¡Gracias!</h3>
-                <p className="text-green-600">Tus datos han sido enviados. Te contactaré a la brevedad por WhatsApp.</p>
-            </div>
-        )
-    }
-
-    return (
-        <form onSubmit={handleSubmit} className="bg-card p-6 md:p-8 rounded-2xl shadow-xl border border-border/50 max-w-md mx-auto mt-12 text-left">
-            <h3 className="text-xl font-bold mb-6 text-center">O déjame tus datos y yo te escribo</h3>
-
-            <input type="text" name="subject" className="hidden" tabIndex={-1} autoComplete="off" />
-
-            <div className="space-y-4">
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground/80 mb-1">Nombre</label>
-                    <input required id="name" name="name" type="text" className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-accent outline-none transition-colors font-sans" placeholder="Tu nombre" />
-                </div>
-
-                <div>
-                    <label htmlFor="whatsapp" className="block text-sm font-medium text-foreground/80 mb-1">WhatsApp</label>
-                    <input required id="whatsapp" name="whatsapp" type="tel" className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-accent outline-none transition-colors font-sans" placeholder="10 dígitos" />
-                </div>
-
-                <div>
-                    <label htmlFor="zone" className="block text-sm font-medium text-foreground/80 mb-1">Zona</label>
-                    <select required id="zone" name="zone" className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-accent outline-none font-sans">
-                        <option value="">Selecciona tu zona...</option>
-                        <option value="Tecamachalco">Tecamachalco</option>
-                        <option value="La Herradura">La Herradura</option>
-                        <option value="Bosques">Bosques</option>
-                        <option value="Interlomas">Interlomas</option>
-                        <option value="Santa Fe">Santa Fe</option>
-                        <option value="Otra">Otra (escribir abajo)</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label htmlFor="times" className="block text-sm font-medium text-foreground/80 mb-1">Horarios de interés</label>
-                    <input required id="times" name="times" type="text" className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-accent outline-none transition-colors font-sans" placeholder="Ej: Martes por la tarde" />
-                </div>
-
-                <div className="flex items-start gap-2 pt-2">
-                    <input required type="checkbox" id="consent" className="mt-1" />
-                    <label htmlFor="consent" className="text-xs text-muted-foreground font-sans">
-                        Acepto compartir estos datos para ser contactada(o). <a href="/aviso-privacidad" className="underline">Aviso de Privacidad</a>.
-                    </label>
-                </div>
-
-                {status === "error" && <p className="text-red-600 text-sm font-sans">Hubo un error. Por favor intenta por WhatsApp directamente.</p>}
-
-                <button
-                    disabled={status === "loading"}
-                    type="submit"
-                    className="w-full bg-foreground text-background py-4 rounded-xl font-bold hover:bg-foreground/90 transition-colors disabled:opacity-50 font-sans"
-                >
-                    {status === "loading" ? "Enviando..." : "Enviar datos"}
-                </button>
-            </div>
-        </form>
-    )
-}
 
 function FaqItem({ q, a }: { q: string, a: string }) {
     const [open, setOpen] = useState(false)
@@ -483,13 +384,9 @@ export default function MusicPage() {
                 <div className="max-w-5xl mx-auto relative z-10 text-center">
                     <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">Descubre tu voz musical</h2>
 
-                    <WhatsAppButton variant="accent" className="px-12 py-6 text-xl shadow-xl shadow-accent/20 mb-16 font-sans">
+                    <WhatsAppButton variant="accent" className="px-12 py-6 text-xl shadow-xl shadow-accent/20 font-sans">
                         Escríbeme por WhatsApp
                     </WhatsAppButton>
-
-                    <div className="w-full max-w-4xl mx-auto border-t border-border/60 pt-16">
-                        <LeadForm />
-                    </div>
                 </div>
             </section>
 
@@ -501,7 +398,6 @@ export default function MusicPage() {
                     <nav className="flex gap-6 text-sm font-medium text-foreground/80">
                         <Link href="/" className="hover:text-accent transition-colors">Inicio</Link>
                         <Link href="/politicas" className="hover:text-accent transition-colors">Reglamento</Link>
-                        <Link href="/aviso-privacidad" className="hover:text-accent transition-colors">Aviso de Privacidad</Link>
                     </nav>
                 </div>
             </footer>

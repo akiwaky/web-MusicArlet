@@ -28,13 +28,4 @@ export const MUSIC_CONFIG = {
         school: "Escuela Superior de Música",
     },
 
-    integrations: {
-        // The webhook URL is NEXT_PUBLIC_* by design (public, baked into the
-        // JS bundle). The env var lets us override per environment without a
-        // rebuild of the codebase, but the fallback ensures the build never
-        // breaks if the var is missing from the build environment.
-        n8nWebhookUrl:
-            process.env.NEXT_PUBLIC_N8N_WEBHOOK_MUSIC
-            ?? "https://n8n.akiwaky.cloud/webhook/music/lead",
-    },
 }
