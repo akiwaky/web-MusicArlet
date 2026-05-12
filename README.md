@@ -27,9 +27,9 @@ npm test             # Ambos
 
 | Variable | Descripción |
 |---|---|
-| `NEXT_PUBLIC_N8N_WEBHOOK_MUSIC` | URL del webhook n8n que recibe leads del formulario. **Obligatoria** — la app falla si no está definida. |
+| `NEXT_PUBLIC_N8N_WEBHOOK_MUSIC` | URL del webhook n8n que recibe leads del formulario. **Opcional** — si no se define, se usa el fallback `https://n8n.akiwaky.cloud/webhook/music/lead`. Útil para apuntar a un webhook `-dev` o `-test` en entornos de preview. |
 
-En Cloudflare Pages, configurar bajo *Settings → Environment variables* (Production y Preview).
+En Cloudflare Pages, configurar bajo *Settings → Environment variables* (Production y Preview) sólo si quieres sobreescribir el default.
 
 ## Deploy
 

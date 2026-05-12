@@ -1,11 +1,3 @@
-function requireEnv(key: string): string {
-    const v = process.env[key];
-    if (!v) {
-        throw new Error(`Missing required env var: ${key}`);
-    }
-    return v;
-}
-
 export const MUSIC_CONFIG = {
     contact: {
         whatsappNumber: "5215620202727",
@@ -37,6 +29,12 @@ export const MUSIC_CONFIG = {
     },
 
     integrations: {
-        n8nWebhookUrl: requireEnv("NEXT_PUBLIC_N8N_WEBHOOK_MUSIC"),
+        // The webhook URL is NEXT_PUBLIC_* by design (public, baked into the
+        // JS bundle). The env var lets us override per environment without a
+        // rebuild of the codebase, but the fallback ensures the build never
+        // breaks if the var is missing from the build environment.
+        n8nWebhookUrl:
+            process.env.NEXT_PUBLIC_N8N_WEBHOOK_MUSIC
+            ?? "https://n8n.akiwaky.cloud/webhook/music/lead",
     },
 }
