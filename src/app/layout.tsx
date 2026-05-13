@@ -14,21 +14,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://music.akiwaky.cloud"),
-  title: "Arlet — Clases de Piano",
+  title: "Arlet Ayala Art Music",
   description:
-    "Clases de piano formales y completas. 17 años de experiencia, formación integral en técnica, lectura de partitura e historia de la música. CDMX y zona metropolitana.",
+    "Clases de piano formales y completas. 17 años de experiencia, formación integral en técnica, lectura de partitura e historia de la música. Tecamachalco, La Herradura, Bosques, Interlomas y Santa Fe.",
   openGraph: {
-    title: "Arlet — Clases de Piano",
-    description: "Clases de piano formales y completas. CDMX y zona metropolitana.",
+    title: "Arlet Ayala Art Music",
+    description: "Clases de piano formales y completas. Tecamachalco, La Herradura, Bosques, Interlomas y Santa Fe.",
     url: "https://music.akiwaky.cloud",
-    siteName: "Arlet — Clases de Piano",
+    siteName: "Arlet Ayala Art Music",
     locale: "es_MX",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arlet — Clases de Piano",
-    description: "Clases de piano formales y completas. CDMX y zona metropolitana.",
+    title: "Arlet Ayala Art Music",
+    description: "Clases de piano formales y completas. Tecamachalco, La Herradura, Bosques, Interlomas y Santa Fe.",
   },
 };
 

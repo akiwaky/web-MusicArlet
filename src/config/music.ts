@@ -11,7 +11,7 @@ export const MUSIC_CONFIG = {
     },
 
     zones: {
-        primary: "Zona por confirmar",
+        primary: "Tecamachalco · La Herradura · Bosques · Interlomas · Santa Fe",
         surchargeLogic: "",
     },
 
