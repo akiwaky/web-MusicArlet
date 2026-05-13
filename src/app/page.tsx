@@ -313,35 +313,59 @@ export default function MusicPage() {
                 </div>
             </section>
 
-            <section className="py-24 px-6">
-                <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-                    <div className="w-full md:w-1/3 relative aspect-[3/4] bg-secondary/30 rounded-2xl overflow-hidden shadow-sm border border-border shrink-0">
-                        <Image
-                            src="/hero-portrait.png"
-                            alt={`${MUSIC_CONFIG.teacher.name} — Maestra de Piano`}
-                            fill
-                            className="object-cover"
-                        />
+            <section id="sobre-mi" className="py-24 px-6">
+                <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-start">
+                    <div className="w-full md:w-1/3 shrink-0 flex flex-col gap-6">
+                        <div className="relative aspect-[3/4] bg-secondary/30 rounded-2xl overflow-hidden shadow-sm border border-border">
+                            <Image
+                                src="/hero-portrait.png"
+                                alt="Arlet Ayala — Maestra de Piano"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <a
+                            href="/cv-arlet-ayala.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl border border-border bg-secondary/30 hover:bg-secondary/60 transition-colors text-sm font-semibold text-foreground font-sans"
+                        >
+                            <ScrollText className="w-4 h-4 text-accent" />
+                            Ver Currículum Vitae
+                        </a>
                     </div>
+
                     <div>
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Tu Maestra</h2>
-                        <h3 className="text-xl font-serif italic text-accent mb-8">{MUSIC_CONFIG.teacher.name}</h3>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-3 tracking-tight">Sobre mí</h2>
+                        <h3 className="text-xl font-serif italic text-accent mb-10">Arlet Ayala</h3>
+
                         <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed font-sans">
                             <p>
-                                Soy profesora de piano con {MUSIC_CONFIG.teacher.yearsExperience} años de experiencia, dedicada a formar músicos
-                                que no solo tocan, sino que comprenden, sienten y piensan la música. Mi formación académica
-                                comenzó en la {MUSIC_CONFIG.teacher.school}, donde desarrollé una base sólida en interpretación y teoría.
+                                Todo comenzó con una nota.
                             </p>
                             <p>
-                                A lo largo de mi trayectoria he tomado múltiples cursos de pedagogía, historia de la música y
-                                especializaciones musicales que enriquecen cada clase. Creo en una enseñanza consciente,
-                                bien estructurada y llena de sentido.
+                                Cuando era niña pisé por primera vez la Escuela de Iniciación Artística del INBA, de la mano de la maestra Alla Sheptak. Algo en aquella primera clase se quedó para siempre: la certeza de que la música no se toca —se vive.
+                            </p>
+                            <p>
+                                Ese camino me llevó a la Escuela Superior de Música, donde estudié Composición Musical y aprendí no solo a interpretar, sino a crear. Mis obras han resonado en escenarios que me marcaron profundamente: el Teatro Julio Castillo, el Ex Teresa Arte Actual, el Museo Diego Rivera, la Sala Blas Galindo, la Biblioteca Vasconcelos, la Casa del Lago. Música instrumental y electroacústica —siempre buscando nuevas formas de contar historias con sonido.
+                            </p>
+                            <p>
+                                Pero enseñar, quizá, es donde más me reconozco. Desde 2011 imparto clases particulares de piano con un enfoque que pocas personas tienen: la Historia del Arte y de la Música como ejes vivos de cada lección. Para mí, entender a Chopin pasa por entender el Romanticismo. Tocar bien pasa, antes que nada, por aprender a escuchar.
+                            </p>
+                            <p>
+                                He profundizado esa mirada en el Claustro de Sor Juana —con estudios de Mitología Griega y Tragedias Griegas— y recientemente con un Diplomado en Arte y Psicoanálisis en el Instituto Helénico. Cada pieza de conocimiento, en el aula, se convierte en herramienta para mis alumnos.
+                            </p>
+                            <p>
+                                Hoy imparto clases de piano, composición e Historia del Arte, y me desplazo a domicilio en Tecamachalco, La Herradura, Bosques, Interlomas y Santa Fe. En cada clase sigo dejando esa primera nota —la que hace que todo tenga sentido.
                             </p>
                         </div>
-                        <ul className="mt-8 space-y-3 font-medium text-foreground font-sans text-sm">
-                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Formada en la {MUSIC_CONFIG.teacher.school}</li>
-                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Especialista en pedagogía e historia de la música</li>
-                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> {MUSIC_CONFIG.teacher.yearsExperience} años de experiencia en enseñanza musical</li>
+
+                        <ul className="mt-10 space-y-3 font-medium text-foreground font-sans text-sm">
+                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Licenciatura en Composición Musical — Escuela Superior de Música</li>
+                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Diplomado en Arte y Psicoanálisis — Instituto Helénico (2024)</li>
+                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Clases magistrales con Marcelo Toledo y Klaus Lang</li>
+                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> +{MUSIC_CONFIG.teacher.yearsExperience} años de experiencia en enseñanza musical</li>
+                            <li className="flex gap-2 items-center"><CheckCircle className="w-5 h-5 text-accent" /> Desplazamiento a domicilio en zonas Poniente CDMX</li>
                         </ul>
                     </div>
                 </div>
